@@ -10,7 +10,6 @@ public class ExerciseA implements IExerciseDemo {
 		ThreadOrchestrator orchestrator = new ThreadOrchestrator();
 		try {
 			orchestrator.initializeThreads();
-			orchestrator.run();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
