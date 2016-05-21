@@ -31,9 +31,9 @@ This is my submission for the Cinchapi hiring exercise. I chose to complete exer
  * @return {@code true} if {@code value} didn't previously exist in
  * the collection and is inserted
  */
-public boolean insert(long value);
+>public boolean insert(long value);
 
-/**
+>/**
  * Return {@code true} if {@code value} exists within the collection.
  * 
  * @param value the value for which to check
@@ -45,7 +45,7 @@ public boolean contains(long value);
 
 The code is well-documented in order to defend design decisions and choices that I made. Further, I developed several test cases for each exercise in the form of JUnit tests in order to confirm functionality. To run the demonstration, please find the JAR file titled ``CinchapiHiringDemo.jar`` in the GitHub repository. After downloading the file to your machine, navigate to the directory where the JAR is located and execute:
 
-``java -jar CinchapiHiringDemo.jar``
+``>> java -jar CinchapiHiringDemo.jar``
 
 This will begin the program, which consists of a prompt loop asking users to choose between exercise A or B, or allowing them to quit the loop if desired.
 
