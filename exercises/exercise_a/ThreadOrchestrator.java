@@ -14,14 +14,19 @@ public class ThreadOrchestrator implements Runnable {
 
 	private Collection<Thread> threads;
 	private AtomicInteger counter;
-	private ReentrantLock counterLock;
+	private ReentrantLock lock;
 
 	public ThreadOrchestrator() {
-		counterLock = new ReentrantLock(true);
+		lock = new ReentrantLock(true);
 		counter = new AtomicInteger(0);
 	}
 
 	void initializeThreads() {
+		readThreadsToList();
+		threads.forEach(Thread::start);
+	}
+	
+	private void readThreadsToList() {
 		threads = new ArrayList<>();
 		InputStream input = this.getClass().getResourceAsStream(THREAD_PROPERTIES_FILE_NAME);
 		try (Scanner reader = new Scanner(input)) {
@@ -30,21 +35,20 @@ public class ThreadOrchestrator implements Runnable {
 				threads.add(new CounterThread(this, reader.next()));
 			}
 			reader.close();
-			threads.forEach(Thread::start);
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 
 	private void incrementCounter() {
-		counterLock.lock();
+		lock.lock();
 		try {
 			if (isCounting()) {
 				System.out.println(counter.incrementAndGet());
 				((CounterThread) Thread.currentThread()).addToCounts(counter.get());
 			}
 		} finally {
-			counterLock.unlock();
+			lock.unlock();
 		}
 	}
 
