@@ -44,5 +44,14 @@ public interface IStructure {
 	 * @param n the number of elements to display.
 	 */
 	public void head(int n);
+
+	/**
+	 * Instantiates the array.
+	 * 
+	 * Provides a Singleton-like design, such that the structure holding values
+	 * can only be instantiated once. This ensures that only **one** instance
+	 * variable on the heap is defined.
+	 */
+	public void initializeStructure();
 	
 }
